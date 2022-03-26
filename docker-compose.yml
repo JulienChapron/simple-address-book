@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  client:
+    build: ./client
+    ports:
+      - "5000:5000"
+    depends_on:
+      - server
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "7017:27017"
+    volumes:
+      - db:/data/db
+  server:
+    depends_on:
+      - mongodb
+    build: ./server
+    ports:
+      - "8877:8877"
+  
+volumes:
+  db:

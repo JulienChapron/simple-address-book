@@ -1,0 +1,14 @@
+image: denoland/deno:1.10.3
+
+stages:
+  - format
+  - test
+  - lint
+
+before_script:
+  - cd server
+
+format:
+  stage: format
+  script:
+    - deno fmt

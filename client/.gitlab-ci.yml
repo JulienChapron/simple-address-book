@@ -1,0 +1,40 @@
+image: node:latest
+
+stages:
+  - install
+  - format
+  - lint
+  - audit
+  - build
+
+before_script:
+  - cd client
+
+install:
+  stage: install
+  script:
+    - npm install
+
+format:
+  stage: format
+  script:
+    - npm install
+    - npm run format
+
+lint:
+  stage: lint
+  script:
+    - npm install
+    - npm run lint
+
+audit:
+  stage: audit
+  script:
+    - npm install
+    - npm audit --audit-level=critical
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build

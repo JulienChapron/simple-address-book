@@ -1,0 +1,21 @@
+stages:
+  - frontend
+  - backend
+
+frontend:
+  stage: frontend
+  trigger:
+    include:
+      - local: client/.gitlab-ci.yml
+  only:
+    changes:
+      - client/**/*
+
+backend:
+  stage: backend
+  trigger:
+    include:
+      - local: server/.gitlab-ci.yml
+  only:
+    changes:
+      - server/**/*
