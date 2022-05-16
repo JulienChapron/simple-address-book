@@ -1,6 +1,6 @@
 # Simple address book with Deno, Svelte and MongoDB
-<a href="https://github.com/JulienChapron/covid19-leaflet-docker/main/LICENSE">
- <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="covid19-leaflet-docker is released under the MIT license." />
+<a href="https://github.com/JulienChapron/simple-address-book/main/LICENSE">
+ <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="simple-address-book is released under the Public License v3.0." />
 </a>
 
 ![alt text](https://raw.githubusercontent.com/JulienChapron/simple-address-book/master/images/app.gif)
