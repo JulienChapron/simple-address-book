@@ -3,7 +3,9 @@
  <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="simple-address-book is released under the Public License v3.0." />
 </a>
 
-[![Code Climate](https://codeclimate.com/github/JulienChapron/simple-address-book/badges/gpa.svg)](https://codeclimate.com/github/JulienChapron/simple-address-book) 
+[![Code Climate](https://codeclimate.com/github/JulienChapron/simple-address-book/badges/gpa.svg)](https://codeclimate.com/github/JulienChapron/simple-address-book)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/JulienChapron/simple-address-book.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JulienChapron/simple-address-book/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/JulienChapron/simple-address-book.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JulienChapron/simple-address-book/context:javascript)
 
 ![alt text](https://raw.githubusercontent.com/JulienChapron/simple-address-book/master/images/app.gif)
 
