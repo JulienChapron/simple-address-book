@@ -3,21 +3,13 @@ import { create } from "https://deno.land/x/djwt@v2.4/mod.ts";
 import { header, key } from "../utils/jwt.ts";
 import { users } from "../models/User.ts";
 import { AES } from "https://deno.land/x/god_crypto/aes.ts";
+import {hexFunction} from '../utils/jwt.ts";
 
 // encrypt key
 const aes = new AES("nbyZK5E#PE!qsv5M", {
   //mode: "cbc",
   iv: "random 16byte iv",
 });
-
-// util to convert hex to bytes array
-function hexToBytesArray(hex: any) {
-  const bytes = [];
-  for (let c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
 
 // signup
 // params: username, password
