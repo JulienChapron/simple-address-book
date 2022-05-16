@@ -29,8 +29,6 @@ const addContact = async ({
     } else {
       const body = await request.body({ type: "form-data" });
       const data = await body.value.read();
-      // form
-      // test fields all filled
       if (
         !data.fields.firstname.length || !data.fields.lastname.length ||
         !data.fields.mobile.length
@@ -41,8 +39,6 @@ const addContact = async ({
           type: "allfields",
         };
       }
-      // email
-      // test email
       if (data.fields.email.length) {
         const regexEmail =
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -57,7 +53,6 @@ const addContact = async ({
           };
         }
       }
-      // avatar
       if (data.fields.avatar) {
         // encoded base64
         let imgBase64 = data.fields.avatar;
@@ -72,8 +67,6 @@ const addContact = async ({
       } else {
         data.fields.avatar = "static/user.jpg";
       }
-
-      // mobile
       let mobile = data.fields.mobile;
       mobile = mobile.replace(/\s/g, "");
       const regexMobile = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
@@ -259,8 +252,6 @@ const updateContact = async ({
         type: "allfields",
       };
     }
-    // email
-    // test email
     if (data.fields.email.length) {
       const regexEmail =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -276,31 +267,24 @@ const updateContact = async ({
         };
       }
     }
-    // avatar
     if (data.fields.avatar) {
       if (
         data.fields.avatar.includes("data:image/jpeg;base64") ||
         data.fields.avatar.includes("data:image/png;base64")
       ) {
-        // encoded base64
         let imgBase64 = data.fields.avatar;
         imgBase64 = imgBase64.replace("data:image/jpeg;base64,", "").replace(
           "data:image/png;base64,",
           "",
         ).replace(" ", "+");
         const imgBase64Decoded = base64Decode(imgBase64);
-        // encoded url
         const avatarId = v4.generate();
         data.fields.avatar = `static/${avatarId}.png`;
-        // save file encoded
         Deno.writeFile(`static/${avatarId}.png`, imgBase64Decoded);
       }
     }
-    // mobile
-    //delete space
     let mobile = data.fields.mobile;
     mobile = mobile.replace(/\s/g, "");
-    // test french mobile
     const regexMobile = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
     const testMobile = regexMobile.test(String(mobile));
     if (!testMobile) {
@@ -314,7 +298,6 @@ const updateContact = async ({
         data.fields.firstname && data.fields.lastname &&
         data.fields.mobile
       ) {
-        // encrypt data
         const firstname = await aes.encrypt(data.fields.firstname);
         data.fields.firstname = firstname.hex();
         const lastname = await aes.encrypt(data.fields.lastname);
