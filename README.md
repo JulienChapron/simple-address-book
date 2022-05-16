@@ -3,6 +3,8 @@
  <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="simple-address-book is released under the Public License v3.0." />
 </a>
 
+[![Code Climate](https://codeclimate.com/github/JulienChapron/simple-address-book/badges/gpa.svg)](https://codeclimate.com/github/JulienChapron/simple-address-book) 
+
 ![alt text](https://raw.githubusercontent.com/JulienChapron/simple-address-book/master/images/app.gif)
 
 ## Tech Stack
