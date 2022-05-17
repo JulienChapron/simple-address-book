@@ -9,7 +9,9 @@ const aes = new AES("nbyZK5E#PE!qsv5M", {
   //mode: "cbc",
   iv: "random 16byte iv",
 });
-
+const regexEmail =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regexMobile = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
 // @description: ADD single contact
 // @route POST /api/contacts
 const addContact = async ({
@@ -31,27 +33,13 @@ const addContact = async ({
       const data = await body.value.read();
       if (
         !data.fields.firstname.length || !data.fields.lastname.length ||
-        !data.fields.mobile.length
+        !data.fields.mobile.length || !data.fields.email.length
       ) {
         return response.body = {
           success: false,
           msg: "All form fields must be filled in",
           type: "allfields",
         };
-      }
-      if (data.fields.email.length) {
-        const regexEmail =
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const testEmail = regexEmail.test(
-          String(data.fields.email).toLowerCase(),
-        );
-        if (!testEmail) {
-          return response.body = {
-            success: false,
-            msg: "Incorrect email",
-            type: "email",
-          };
-        }
       }
       if (data.fields.avatar) {
         // encoded base64
@@ -67,45 +55,40 @@ const addContact = async ({
       } else {
         data.fields.avatar = "static/user.jpg";
       }
-      let mobile = data.fields.mobile;
-      mobile = mobile.replace(/\s/g, "");
-      const regexMobile = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
-      const testMobile = regexMobile.test(String(mobile));
+      const testEmail = regexEmail.test(
+        String(data.fields.email).toLowerCase(),
+      );
+      if (!testEmail) {
+        return response.body = {
+          success: false,
+          msg: "Incorrect email",
+          type: "email",
+        };
+      }
+      const testMobile = regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")));
       if (!testMobile) {
         return response.body = {
           success: false,
           msg: "Incorrect mobile number",
           type: "mobile",
         };
-      } else {
-        if (
-          data.fields.firstname && data.fields.lastname &&
-          data.fields.mobile
-        ) {
-          // encrypt data
-          const firstname = await aes.encrypt(data.fields.firstname);
-          data.fields.firstname = firstname.hex();
-          const lastname = await aes.encrypt(data.fields.lastname);
-          data.fields.lastname = lastname.hex();
-          const email = await aes.encrypt(data.fields.email);
-          data.fields.email = email.hex();
-          const mobile = await aes.encrypt(data.fields.mobile);
-          data.fields.mobile = mobile.hex();
-          const contact = data.fields;
-          await contacts.insertOne(contact);
-          response.status = 201;
-          response.body = {
-            success: true,
-            data: contact,
-          };
-        } else {
-          response.status = 200;
-          response.body = {
-            success: false,
-            msg: "All form fields must be filled in",
-          };
-        }
       }
+      // encrypt data
+      const firstname = await aes.encrypt(data.fields.firstname);
+      data.fields.firstname = firstname.hex();
+      const lastname = await aes.encrypt(data.fields.lastname);
+      data.fields.lastname = lastname.hex();
+      const email = await aes.encrypt(data.fields.email);
+      data.fields.email = email.hex();
+      const mobile = await aes.encrypt(data.fields.mobile);
+      data.fields.mobile = mobile.hex();
+      const contact = data.fields;
+      await contacts.insertOne(contact);
+      response.status = 201;
+      response.body = {
+        success: true,
+        data: contact,
+      };
     }
   } catch (err) {
     response.body = {
