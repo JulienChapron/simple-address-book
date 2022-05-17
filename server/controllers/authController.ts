@@ -74,51 +74,42 @@ export const login = async ({ request, response }: {
         error: true,
         msg: "An error has been occured",
       };
+    }
+    const body = await request.body({ type: "form-data" });
+    const data = await body.value.read();
+    const userEncrypt = await aes.encrypt(data.fields.username);
+    data.fields.username = userEncrypt.hex();
+    const user = await users.findOne({ username: data.fields.username });
+    const keyAwait = await key;
+    if (!data.fields.username || !data.fields.password) {
+      response.status = 403;
+      response.body = {
+        error: true,
+        msg: "All form fields must be filled in",
+      };
+    }
+    if (user && await bcrypt.compareSync(data.fields.password, user.password)) {
+      const token = await create(header, data, keyAwait);
+      response.status = 200;
+      response.body = {
+        success: true,
+        data: {
+          username: user.username,
+          _id: user._id,
+          token: token,
+          isAuthenticated: true,
+        },
+        msg: "Successfully connected",
+      };
     } else {
-      const body = await request.body({ type: "form-data" });
-      const data = await body.value.read();
-      const userEncrypt = await aes.encrypt(data.fields.username);
-      data.fields.username = userEncrypt.hex();
-      const user = await users.findOne({ username: data.fields.username });
-      const keyAwait = await key;
-      if (!data.fields.username || !data.fields.password) {
-        response.status = 403;
-        response.body = {
-          error: true,
-          msg: "All form fields must be filled in",
-        };
-      } else if (user) {
-        if (await bcrypt.compareSync(data.fields.password, user.password)) {
-          const token = await create(header, data, keyAwait);
-          response.status = 200;
-          response.body = {
-            success: true,
-            data: {
-              username: user.username,
-              _id: user._id,
-              token: token,
-              isAuthenticated: true,
-            },
-            msg: "Successfully connected",
-          };
-        } else {
-          response.status = 403;
-          response.body = {
-            error: true,
-            msg: "Wrong Password",
-          };
-        }
-      } else {
-        response.status = 403;
-        response.body = {
-          error: true,
-          msg: "Username does not exist",
-        };
-      }
+      response.status = 403;
+      response.body = {
+        error: true,
+        msg: "Wrong Password or Username does not exist",
+      };
     }
   } catch (err) {
     response.status = 500;
-    console.log(err);
     response.body = {
       error: true,
       msg: "An error has been occured",
