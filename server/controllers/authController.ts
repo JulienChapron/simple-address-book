@@ -10,15 +10,6 @@ const aes = new AES("nbyZK5E#PE!qsv5M", {
   iv: "random 16byte iv",
 });
 
-// util to convert hex to bytes array
-function hexToBytesArray(hex: any) {
-  const bytes = [];
-  for (let c = 0; c < hex.length; c += 2) {
-    bytes.push(parseInt(hex.substr(c, 2), 16));
-  }
-  return bytes;
-}
-
 // signup
 // params: username, password
 export const signup = async ({ request, response }: {
