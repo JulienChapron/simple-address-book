@@ -41,20 +41,6 @@ const addContact = async ({
           type: "allfields",
         };
       }
-      if (data.fields.avatar) {
-        // encoded base64
-        let imgBase64 = data.fields.avatar;
-        imgBase64 = imgBase64.replace("data:image/jpeg;base64,", "").replace(
-          "data:image/png;base64,",
-          "",
-        ).replace(" ", "+");
-        const imgBase64Decoded = base64Decode(imgBase64);
-        const avatarId = v4.generate();
-        data.fields.avatar = `static/${avatarId}.png`;
-        Deno.writeFile(`static/${avatarId}.png`, imgBase64Decoded);
-      } else {
-        data.fields.avatar = "static/user.jpg";
-      }
       const testEmail = regexEmail.test(
         String(data.fields.email).toLowerCase(),
       );
@@ -73,6 +59,21 @@ const addContact = async ({
           type: "mobile",
         };
       }
+      if (data.fields.avatar) {
+        // encoded base64
+        let imgBase64 = data.fields.avatar;
+        imgBase64 = imgBase64.replace("data:image/jpeg;base64,", "").replace(
+          "data:image/png;base64,",
+          "",
+        ).replace(" ", "+");
+        const imgBase64Decoded = base64Decode(imgBase64);
+        const avatarId = v4.generate();
+        data.fields.avatar = `static/${avatarId}.png`;
+        Deno.writeFile(`static/${avatarId}.png`, imgBase64Decoded);
+      } else {
+        data.fields.avatar = "static/user.jpg";
+      }
+
       // encrypt data
       const firstname = await aes.encrypt(data.fields.firstname);
       data.fields.firstname = firstname.hex();
