@@ -13,7 +13,7 @@ app.use(router.allowedMethods());
 // router
 app.use(async (context) => {
   await send(context, context.request.url.pathname, {
-    root: `${Deno.cwd()}/`,
+    root: `${Deno.cwd()}/`, 
   });
 });
 

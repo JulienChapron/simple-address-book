@@ -107,7 +107,7 @@
                             formData.append('userId', $user._id);
                             if ($key === 'POST') {
                                 const response = await postContact($user.token, formData);
-                                if (!response.error) {
+                                if (response.success && !response.error) {
                                     $contacts.push(response.data);
                                     $contacts = $contacts.sort();
                                     $showSnackbarCreatedContact = true;
@@ -145,12 +145,12 @@
                     formData.append('userId', $user._id);
                     if ($key === 'POST') {
                         const response = await postContact($user.token, formData);
-                        if (!response.error) {
+                        if (response.success && !response.error) {
                             $contacts.push(response.data);
                             $contacts = $contacts.sort();
                             $showSnackbarCreatedContact = true;
                             navigate('/');
-                        } else if (response.error) {
+                        } else if (!response.success || response.error) {
                             $messageErrorBtn = response.msg;
                         }
                     } else if ($key === 'PUT') {

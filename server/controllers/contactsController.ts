@@ -2,13 +2,21 @@ import { contacts } from "../models/Contact.ts";
 import { Bson } from "https://deno.land/x/mongo@v0.22.0/mod.ts";
 import { decode as base64Decode } from "https://deno.land/std@0.82.0/encoding/base64.ts";
 import { AES } from "https://deno.land/x/god_crypto/aes.ts";
-import { v4 } from "https://deno.land/std@0.95.0/uuid/mod.ts";
-import {} from "../utils/hex.js"
+import { v4 } from "https://deno.land/std@0.131.0/uuid/mod.ts";
+
 ///// WARNING -- never show -- WARNING /////
 const aes = new AES("nbyZK5E#PE!qsv5M", {
   //mode: "cbc",
   iv: "random 16byte iv",
 });
+// util to convert hex to bytes array
+function hexToBytesArray(hex: any) {
+  const bytes = [];
+  for (let c = 0; c < hex.length; c += 2) {
+    bytes.push(parseInt(hex.substr(c, 2), 16));
+  }
+  return bytes;
+}
 
 // @description: ADD single contact
 // @route POST /api/contacts

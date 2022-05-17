@@ -43,7 +43,7 @@
         <span transition:fade={{ duration: 2000 }}><ProgressLinear color="success" /></span>
     {:else}
         <ul transition:fade={{ duration: 1000 }}>
-            {#if !$filteredContacts.length}
+            {#if !$filteredContacts}
                 <p>{$t('noContactRegistered')}</p>
             {/if}
             {#each $filteredContacts as contactItem}

@@ -4,6 +4,7 @@ services:
     build: ./client
     ports:
       - "5000:5000"
+    restart: always
     depends_on:
       - server
   mongodb:
@@ -16,8 +17,9 @@ services:
     depends_on:
       - mongodb
     build: ./server
+    restart: always
     ports:
       - "8877:8877"
-  
+
 volumes:
   db:
