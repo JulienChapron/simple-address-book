@@ -255,7 +255,7 @@ const updateContact = async ({
         Deno.writeFile(`static/${avatarId}.png`, imgBase64Decoded);
       }
     }
-    if (!regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")));) {
+    if (!regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")))) {
       return response.body = {
         success: false,
         msg: "Incorrect mobile number",

@@ -78,10 +78,9 @@ export const login = async ({ request, response }: {
     const body = await request.body({ type: "form-data" });
     const data = await body.value.read();
     const userEncrypt = await aes.encrypt(data.fields.username);
-    data.fields.username = userEncrypt.hex();
-    const user = await users.findOne({ username: data.fields.username });
+    const user = await users.findOne({ username: userEncrypt.hex() });
     const keyAwait = await key;
-    if (!data.fields.username || !data.fields.password) {
+    if (!userEncrypt.hex() || !data.fields.password) {
       response.status = 403;
       response.body = {
         error: true,
@@ -89,14 +88,13 @@ export const login = async ({ request, response }: {
       };
     }
     if (user && await bcrypt.compareSync(data.fields.password, user.password)) {
-      const token = await create(header, data, keyAwait);
       response.status = 200;
       response.body = {
         success: true,
         data: {
           username: user.username,
           _id: user._id,
-          token: token,
+          token: await create(header, data, keyAwait),
           isAuthenticated: true,
         },
         msg: "Successfully connected",
