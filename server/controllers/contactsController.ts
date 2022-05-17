@@ -44,6 +44,8 @@ const addContact = async ({
       const testEmail = regexEmail.test(
         String(data.fields.email).toLowerCase(),
       );
+      const testMobile = regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")));
+
       if (!testEmail) {
         return response.body = {
           success: false,
@@ -51,7 +53,6 @@ const addContact = async ({
           type: "email",
         };
       }
-      const testMobile = regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")));
       if (!testMobile) {
         return response.body = {
           success: false,
@@ -227,20 +228,18 @@ const updateContact = async ({
         type: "allfields",
       };
     }
-    if (data.fields.email.length) {
-      const regexEmail =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      const testEmail = regexEmail.test(
-        String(data.fields.email).toLowerCase(),
-      );
-      if (!testEmail) {
-        return response.body = {
-          success: false,
-          msg: "Incorrect email",
-          error: "WARNING: Something not so bad happened",
-          type: "email",
-        };
-      }
+    const regexEmail =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const testEmail = regexEmail.test(
+      String(data.fields.email).toLowerCase(),
+    );
+    if (!testEmail) {
+      return response.body = {
+        success: false,
+        msg: "Incorrect email",
+        error: "WARNING: Something not so bad happened",
+        type: "email",
+      };
     }
     if (data.fields.avatar) {
       if (
@@ -258,46 +257,38 @@ const updateContact = async ({
         Deno.writeFile(`static/${avatarId}.png`, imgBase64Decoded);
       }
     }
-    let mobile = data.fields.mobile;
-    mobile = mobile.replace(/\s/g, "");
     const regexMobile = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
-    const testMobile = regexMobile.test(String(mobile));
+    const testMobile = regexMobile.test(String(data.fields.mobile.replace(/\s/g, "")));
     if (!testMobile) {
       return response.body = {
         success: false,
         msg: "Incorrect mobile number",
         type: "mobile",
       };
-    } else {
-      if (
-        data.fields.firstname && data.fields.lastname &&
-        data.fields.mobile
-      ) {
-        const firstname = await aes.encrypt(data.fields.firstname);
-        data.fields.firstname = firstname.hex();
-        const lastname = await aes.encrypt(data.fields.lastname);
-        data.fields.lastname = lastname.hex();
-        const email = await aes.encrypt(data.fields.email);
-        data.fields.email = email.hex();
-        const mobile = await aes.encrypt(data.fields.mobile);
-        data.fields.mobile = mobile.hex();
-
-        const contact = data.fields;
-        await contacts.updateOne(
-          { _id: new Bson.ObjectId(params.id) },
-          { $set: contact },
-        );
-
-        const updatedContact = await contacts.findOne({
-          _id: new Bson.ObjectId(params.id),
-        });
-        response.status = 200;
-        response.body = {
-          success: true,
-          data: updatedContact,
-        };
-      }
     }
+    const firstname = await aes.encrypt(data.fields.firstname);
+    data.fields.firstname = firstname.hex();
+    const lastname = await aes.encrypt(data.fields.lastname);
+    data.fields.lastname = lastname.hex();
+    const email = await aes.encrypt(data.fields.email);
+    data.fields.email = email.hex();
+    const mobile = await aes.encrypt(data.fields.mobile);
+    data.fields.mobile = mobile.hex();
+
+    const contact = data.fields;
+    await contacts.updateOne(
+      { _id: new Bson.ObjectId(params.id) },
+      { $set: contact },
+    );
+
+    const updatedContact = await contacts.findOne({
+      _id: new Bson.ObjectId(params.id),
+    });
+    response.status = 200;
+    response.body = {
+      success: true,
+      data: updatedContact,
+    };
   } catch (err) {
     response.body = {
       success: false,
