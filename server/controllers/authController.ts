@@ -1,4 +1,4 @@
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+import * as bcrypt from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
 import { create } from "https://deno.land/x/djwt@v2.4/mod.ts";
 import { header, key } from "../utils/jwt.ts";
 import { users } from "../models/User.ts";

@@ -1,6 +1,6 @@
-import { MongoClient } from "https://deno.land/x/mongo@v0.22.0/mod.ts";
-const URI = "mongodb://127.0.0.1:27017";
-//const URI = "mongodb://mongodb:27017";
+import { MongoClient } from "https://deno.land/x/mongo@v0.29.4/mod.ts";
+//const URI = "mongodb://127.0.0.1:27017";
+const URI = "mongodb://mongodb:27017";
 const client = new MongoClient();
 try {
   await client.connect(URI);

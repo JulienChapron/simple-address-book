@@ -8,5 +8,5 @@
 </style>
 
 <div id="footer">
-    <small style="text-align:center">simple-address-book©2021 v0.1</small>
+    <small style="text-align:center">simple-address-book©2022 v0.1</small>
 </div>

@@ -1,4 +1,4 @@
-FROM denoland/deno:1.15.3
+FROM denoland/deno:1.21.0
 EXPOSE 8877
 WORKDIR /usr/src/app 
 ADD . .
