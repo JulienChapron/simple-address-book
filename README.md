@@ -7,6 +7,7 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/JulienChapron/simple-address-book.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JulienChapron/simple-address-book/alerts/)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/JulienChapron/simple-address-book.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/JulienChapron/simple-address-book/context:javascript)
 ![Known Vulnerabilities](https://snyk.io/test/github/JulienChapron/simple-address-book/badge.svg)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7a0affbbbb58400f8fc2a77f7429006a)](https://www.codacy.com/gh/JulienChapron/simple-address-book/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JulienChapron/simple-address-book&amp;utm_campaign=Badge_Grade)
 
 ![alt text](https://raw.githubusercontent.com/JulienChapron/simple-address-book/master/images/app.gif)
 
