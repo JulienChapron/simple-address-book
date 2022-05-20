@@ -16,13 +16,7 @@ module.exports = {
     },
   ],
   rules: {
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    "node/no-unsupported-features/es-syntax": [
-        "error",
-        {
-          version: ">=8.0.0",
-        },
-    ],
+    '@typescript-eslint/no-non-null-assertion': 'off'
   },
   settings: {
   },
