@@ -13,10 +13,10 @@
 
 ## Tech Stack
 
-*  <img src="https://deno.land/logo.svg" alt="logo-deno" style="margin:5px;vertical-align:middle" height="50"/> Deno <https://deno.land/>
-*  <img src="https://pbs.twimg.com/profile_images/1121395911849062400/7exmJEg4.png" style="margin:5px;vertical-align:middle" alt="logo-svelte" height="50"/> Svelte <https://svelte.dev/>
-*  <img src="https://smeltejs.com/logo.svg" style="margin:5px;vertical-align:middle" alt="logo-smelte" height="50"/> Smelte <https://smeltejs.com/>
-*  <img src="https://www.universitylib.com/wp-content/uploads/2020/11/Mongo-db-logo.png" style="margin:5px;vertical-align:middle" alt="logo-mongoDB" height="50"/> MongoDB <https://www.mongodb.com/>
+*   <img src="https://deno.land/logo.svg" alt="logo-deno" style="margin:5px;vertical-align:middle" height="50"/> Deno <https://deno.land/>
+*   <img src="https://pbs.twimg.com/profile_images/1121395911849062400/7exmJEg4.png" style="margin:5px;vertical-align:middle" alt="logo-svelte" height="50"/> Svelte <https://svelte.dev/>
+*   <img src="https://smeltejs.com/logo.svg" style="margin:5px;vertical-align:middle" alt="logo-smelte" height="50"/> Smelte <https://smeltejs.com/>
+*   <img src="https://www.universitylib.com/wp-content/uploads/2020/11/Mongo-db-logo.png" style="margin:5px;vertical-align:middle" alt="logo-mongoDB" height="50"/> MongoDB <https://www.mongodb.com/>
 
 ### Deno
 
