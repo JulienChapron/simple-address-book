@@ -41,11 +41,11 @@
             style="background-color:#fca311">{$t('update')}</Button
         >
     </div>
-    <div style="width:100%;padding:5px 40px 40px 40px;">
-        <div style="border-radius:5px; border:grey 1px solid;">
+    <div style="width: 100%; padding: 5px 40px 40px 40px;">
+        <div style="border-radius: 5px; border: grey 1px solid;">
             <div style="padding:20px;background:#fff;border-radius: 5px 5px 0px 0px">
                 <img
-                    style="width:100px; height:100px; border-radius:100%;margin:auto;"
+                    style="width: 100px; height: 100px; border-radius: 100%; margin:auto;"
                     alt="avatar"
                     src={apiUrlImage + $contact.avatar}
                 />
@@ -55,7 +55,7 @@
                     <Button class="contact-btn" color="black" text light flat icon="person" />
                     <p>{$contact.firstname}{' '}{$contact.lastname}</p>
                 </div>
-                <p style="margin-top:15px;">
+                <p style="margin-top: 15px;">
                     <Button
                         class="contact-btn"
                         color="black"
@@ -66,7 +66,7 @@
                     />{$contact.email}
                 </p>
 
-                <p style="margin-top:15px;">
+                <p style="margin-top: 15px;">
                     <Button
                         class="contact-btn"
                         color="black"
