@@ -10,6 +10,6 @@
     }
 </script>
 
-<div style="width: fit-content;margin-left:auto;margin-right:auto;" class="mt-5">
+<div style="width: fit-content; margin-left: auto; margin-right: auto;" class="mt-5">
     <Select color="secondary" label={$t('languages')} {$locale} {items} on:change={changeLocale} />
 </div>

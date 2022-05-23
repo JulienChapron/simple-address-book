@@ -51,7 +51,7 @@
                 />
             </div>
             <div style="padding:20px;">
-                <div style="margin-top:15px;">
+                <div style="margin-top: 15px;">
                     <Button class="contact-btn" color="black" text light flat icon="person" />
                     <p>{$contact.firstname}{' '}{$contact.lastname}</p>
                 </div>
