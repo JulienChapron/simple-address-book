@@ -1,21 +1,19 @@
-// contactsList.svelte
 .update-delete-btn {
-    margin-top:15px;
-    display:flex;
-    line-height:15px;
+    margin-top: 15px;
+    display: flex;
+    line-height: 15px;
 }
 .list {
-    margin-left:auto;
-    margin-right:auto;
-    max-width:auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: auto;
     max-height: 410px;
     overflow: auto;
 }
-
 .container-app {
     position:relative;
-    height:100%; 
-    width:100%;
+    height: 100%; 
+    width: 100%;
     max-width: 720px;
     min-height: 650px;
     margin: 5% auto;
@@ -26,13 +24,11 @@
     background-color: #e5e5e5;
     box-shadow: 0px 0px 18px -3px rgba(0, 0, 0, 0.77);
 }
-.route-component{
-    padding:10px;
-    width:100%;
-    position:absolute;
+.route-component {
+    padding: 10px;
+    width: 100%;
+    position: absolute;
 }
-
-//contactItem.svelte
 .card {
     display: flex;
     margin: 20px 0px;
@@ -60,36 +56,34 @@
     padding: 0px 10px;
     border-bottom: grey 0.5px solid;
 }
-
-//form.svelte
-.avatar-preview{
-    margin:auto;
-    width:100px;
-    height:100px;
-    border-radius:100%;
+.avatar-preview {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
 }
-.avatar-div{
-    width:100%;
-    padding:5px 40px 40px 40px;
+.avatar-div {
+    width: 100%;
+    padding: 5px 40px 40px 40px;
 }
-.register-btn{
+.register-btn {
     background-color:#fca311
 }
-.link-div{
-    display:flex;
-    justify-content:center;
+.link-div {
+    display: flex;
+    justify-content: center;
 }
-.cancel-btn{
-    margin-right:5px;
-    background-color:#14213d
+.cancel-btn {
+    margin-right: 5px;
+    background-color: #14213d
 }
 //contact.svelte
-.contact-btn{
-    height:8px;
-    margin:auto;
+.contact-btn {
+    height: 8px;
+    margin: auto;
     background-color:#e5e5e5
 }
-.is-centered{
-    margin-left:auto;
-    margin-right:auto;
+.is-centered {
+    margin-left: auto;
+    margin-right: auto;
 }

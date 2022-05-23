@@ -15742,7 +15742,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			small = element("small");
-    			small.textContent = "simple-address-book©2021 v0.1";
+    			small.textContent = "simple-address-book©2022 v0.1";
     			set_style(small, "text-align", "center");
     			add_location(small, file$7, 10, 4, 156);
     			attr_dev(div, "id", "footer");
