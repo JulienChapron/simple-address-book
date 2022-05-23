@@ -17,7 +17,7 @@
 </script>
 
 <div data-testid="contact-component">
-    <div style="display:flex;justify-content:center;">
+    <div style="display: flex; justify-content: center;">
         <GenericBtn
             iconBtn="cancel"
             testid="cancel-btn"
@@ -43,7 +43,7 @@
     </div>
     <div style="width: 100%; padding: 5px 40px 40px 40px;">
         <div style="border-radius: 5px; border: grey 1px solid;">
-            <div style="padding:20px;background:#fff;border-radius: 5px 5px 0px 0px">
+            <div style="padding: 20px; background: #fff; border-radius: 5px 5px 0px 0px">
                 <img
                     style="width: 100px; height: 100px; border-radius: 100%; margin:auto;"
                     alt="avatar"

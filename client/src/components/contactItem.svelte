@@ -23,7 +23,7 @@
         class="avatar"
     />
     <div on:click={showContact(contactItem)} class="firstname-lastname">
-        <div data-testid="contactItem-firstname-lastname" style="line-height:25px;">
+        <div data-testid="contactItem-firstname-lastname" style="line-height: 25px;">
             {contactItem.firstname}{' '}{contactItem.lastname}
         </div>
         <div data-testid="contactItem-mobile" class="subheading">
